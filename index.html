@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OSM Feature Search</title>
+
+    <meta name="description" content="Search OpenStreetMap (OSM) for features based on proximity to other features. Find locations near specific amenities or avoid areas near others using Overpass API queries.">
+    <meta name="keywords" content="OpenStreetMap, OSM, Overpass API, feature search, proximity search, geocoding, map search, reverse search, spatial query">
+    <meta name="author" content="Ivan">
+    <meta property="og:title" content="OSM Feature Search">
+    <meta property="og:description" content="Find OSM features based on proximity rules (nearby/not nearby).">
+    <meta property="og:type" content="website">
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar results-panel">
+            <h2>Results</h2>
+            <div class="export-buttons">
+                <button id="export-csv" title="Export results as CSV" disabled>Export CSV</button>
+                <button id="export-geojson" title="Export results as GeoJSON" disabled>Export GeoJSON</button>
+                <button id="export-kml" title="Export results as KML" disabled>Export KML</button>
+            </div>
+            <ul id="results-list"></ul>
+        </div>
+        <div class="main-content">
+            <div id="map"></div>
+        </div>
+        <div class="sidebar features-panel">
+            <h2>Select Features</h2>
+
+            <div class="location-search">
+                <input type="text" id="location-search-input" placeholder="Search for a place...">
+                <button id="location-search-button">Go</button>
+            </div>
+
+            <h3>Search Scope</h3>
+            <label for="area-name">Search within Area (Optional Name):</label>
+            <input type="text" id="area-name" placeholder="e.g., City Park, London">
+            <small>Leave blank to use map view bounds.</small>
+
+            <p style="margin-top: 15px;">Max Distance (meters): <input type="number" id="max-distance" value="100" min="10" max="5000"></p>
+
+            <h3>Include Features (Require Nearby)</h3>
+            <div id="preset-features">
+                <!-- Presets will be loaded here by JS -->
+            </div>
+            <h4>Selected Positive Features</h4>
+            <ul id="selected-features-list"></ul>
+            <h4>Custom Positive Feature</h4>
+            <input type="text" id="custom-key" list="osm-keys" placeholder="OSM Key (e.g., amenity)">
+            <datalist id="osm-keys"></datalist>
+            <input type="text" id="custom-value" list="osm-values" placeholder="OSM Value (e.g., bench)">
+            <datalist id="osm-values"></datalist>
+            <button id="add-custom-feature">Add Positive</button>
+
+            <h3 style="margin-top: 25px;">Exclude Features (Require NOT Nearby)</h3>
+            <h4>Selected Negative Features</h4>
+            <ul id="negative-features-list"></ul>
+            <h4>Custom Negative Feature</h4>
+            <input type="text" id="negative-key" list="osm-keys" placeholder="OSM Key (e.g., railway)">
+            <input type="text" id="negative-value" list="osm-values" placeholder="OSM Value (e.g., station)">
+            <button id="add-negative-feature">Add Negative</button>
+
+            <button id="search-button">Search</button>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

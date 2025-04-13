@@ -1,0 +1,320 @@
+:root {
+    --bg-color: #1a1a1a;
+    --surface-color: rgba(40, 40, 40, 0.8);
+    --primary-color: #6495ED;
+    --text-color: #e0e0e0;
+    --text-muted-color: #a0a0a0;
+    --border-color: rgba(255, 255, 255, 0.1);
+    --hover-bg-color: rgba(255, 255, 255, 0.08);
+    --active-bg-color: rgba(100, 149, 237, 0.2);
+    --button-bg: #333;
+    --button-hover-bg: #444;
+    --input-bg: #282828;
+    --danger-color: #FF6347;
+    --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+body {
+    font-family: var(--font-family);
+    margin: 0;
+    display: flex;
+    height: 100vh;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    overflow: hidden;
+}
+
+.container {
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+
+.sidebar {
+    padding: 20px;
+    background-color: var(--surface-color);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    box-sizing: border-box;
+    border: 1px solid var(--border-color);
+    scrollbar-width: thin;
+    scrollbar-color: var(--primary-color) var(--bg-color);
+}
+
+.sidebar::-webkit-scrollbar {
+  width: 8px;
+}
+.sidebar::-webkit-scrollbar-track {
+  background: var(--bg-color);
+}
+.sidebar::-webkit-scrollbar-thumb {
+  background-color: var(--primary-color);
+  border-radius: 4px;
+  border: 2px solid var(--bg-color);
+}
+
+.results-panel {
+    width: 300px;
+    border-right: none;
+}
+
+.features-panel {
+    width: 350px;
+    border-left: none;
+}
+
+.main-content {
+    flex-grow: 1;
+    position: relative;
+    height: 100vh;
+}
+
+#map {
+    width: 100%;
+    height: 100%;
+}
+
+h2, h3 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    color: var(--text-color);
+    font-weight: 500;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 8px;
+}
+
+h3 {
+    margin-top: 20px;
+    font-size: 1.1em;
+}
+
+h4 {
+    margin-top: 15px;
+    margin-bottom: 8px;
+    color: var(--text-muted-color);
+    font-size: 0.95em;
+    font-weight: 500;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 15px 0;
+    color: var(--text-muted-color);
+    font-size: 0.9em;
+}
+
+li {
+    padding: 0;
+    margin: 0;
+}
+
+label, p {
+    display: block;
+    margin-bottom: 5px;
+    color: var(--text-muted-color);
+    font-size: 0.9em;
+}
+
+small {
+    display: block;
+    font-size: 0.8em;
+    color: var(--text-muted-color);
+    margin-top: -5px;
+    margin-bottom: 10px;
+}
+
+button {
+    padding: 10px 15px;
+    margin-top: 15px;
+    cursor: pointer;
+    background-color: var(--button-bg);
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+    font-size: 1em;
+}
+
+button:hover:not(:disabled) {
+    background-color: var(--button-hover-bg);
+    border-color: var(--primary-color);
+}
+
+button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+#search-button {
+    background-color: var(--primary-color);
+    color: #fff;
+    font-weight: bold;
+    border: none;
+}
+
+#search-button:hover:not(:disabled) {
+    background-color: #537bcd;
+}
+
+input[type="text"],
+input[type="number"] {
+    padding: 10px;
+    margin-bottom: 10px;
+    width: calc(100% - 22px);
+    background-color: var(--input-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    color: var(--text-color);
+    font-size: 1em;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
+#preset-features button {
+    display: block;
+    width: 100%;
+    text-align: left;
+    margin-bottom: 5px;
+    background-color: transparent;
+    border: 1px solid var(--border-color);
+    color: var(--text-muted-color);
+    padding: 8px 12px;
+    font-size: 0.95em;
+}
+
+#preset-features button:hover {
+    background-color: var(--hover-bg-color);
+    border-color: var(--primary-color);
+    color: var(--text-color);
+}
+
+#selected-features-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6px 10px;
+    background-color: rgba(255, 255, 255, 0.05);
+    margin-bottom: 4px;
+    border-radius: 4px;
+    border: 1px solid var(--border-color);
+    font-size: 0.9em;
+}
+
+#selected-features-list li button {
+    background: none;
+    border: none;
+    color: var(--danger-color);
+    cursor: pointer;
+    font-size: 1.4em;
+    line-height: 1;
+    padding: 0 5px;
+    margin: 0;
+    margin-left: 10px;
+}
+
+#selected-features-list li button:hover {
+    color: #ff8c7a;
+}
+
+.results-panel li {
+    border-bottom: 1px solid var(--border-color);
+    padding: 10px 5px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.results-panel li:hover {
+    background-color: var(--hover-bg-color);
+}
+
+.results-panel li:first-child {
+    font-weight: bold;
+    cursor: default;
+    color: var(--text-muted-color);
+}
+
+.results-panel li:first-child:hover {
+    background-color: transparent;
+}
+
+.export-buttons {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.export-buttons button {
+    padding: 6px 10px;
+    font-size: 0.85em;
+    margin-top: 0;
+}
+
+.leaflet-control-layers {
+    background: var(--surface-color);
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+    box-shadow: 0 1px 5px rgba(0,0,0,0.4);
+}
+.leaflet-control-layers-base label, .leaflet-control-layers-overlays label {
+    display: block;
+    margin-bottom: 5px;
+    cursor: pointer;
+}
+.leaflet-control-layers-selector {
+    margin-right: 8px;
+}
+.leaflet-control-layers-separator {
+    border-top: 1px solid var(--border-color);
+    margin: 5px 0;
+}
+
+.leaflet-control-attribution a.leaflet-attribution-flag {
+    display: none !important;
+}
+
+input::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+    opacity: 0.5;
+}
+
+input[list] {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23a0a0a0' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 8px center;
+    background-size: 16px;
+    padding-right: 32px;
+}
+
+input[list]::-webkit-calendar-picker-indicator {
+    opacity: 0;
+}
+
+.location-search {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+#location-search-input {
+    flex-grow: 1;
+    margin-right: 5px;
+    margin-bottom: 0;
+}
+
+#location-search-button {
+    margin-top: 0;
+    padding: 10px 12px;
+    flex-shrink: 0;
+}
