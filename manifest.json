@@ -1,0 +1,17 @@
+{
+  "name": "OSM Feature Search",
+  "short_name": "OSMSearch",
+  "description": "Search OpenStreetMap features based on proximity rules.",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#1a1a1a",
+  "theme_color": "#1a1a1a",
+  "icons": [
+    {
+      "src": "logo.png",
+      "sizes": "48x48 72x72 96x96 128x128 144x144 192x192 256x256 512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+} 
